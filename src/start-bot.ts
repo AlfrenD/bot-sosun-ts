@@ -5,16 +5,19 @@ import {
   Events,
   REST,
   Routes,
+  TextChannel,
 } from "discord.js";
+import schedule from "node-schedule";
 
-//test import { ButtonBuilder, ButtonStyle, ActionRowBuilder } from "discord.js";
 import { Client } from "./client";
 import { constants } from "@/config/constants";
+import { protUserProcessing } from "@/utils/ProtectUser.ts";
+import { autoMod } from "@/utils/autoMod.ts";
 
 // https://github.com/ZyhlohYT/BasicYTDiscordBot/blob/main/index.js
 // https://www.youtube.com/watch?v=Dgy3EJ3HtMw
 
-const client = new Client();
+export const client = new Client();
 
 client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
@@ -42,9 +45,29 @@ client.on(Events.InteractionCreate, async (interaction) => {
     }
   }
 });
-// test button
+
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
+  //message resolver
+  const MiscJson = await client.readJSON();
+  autoMod(message, MiscJson);
+  if (MiscJson.protectedUsers.includes(message.author.id)) {
+    //protUserProcessing(message);
+  }
 });
-// test end
+
+client.on(Events.TypingStart, async (typing) => {
+  //const { channel, user } = typing;
+  // const listOfProtectedUsers = await client.readJSON();
+  // channel.typin;
+  // if (listOfProtectedUsers.includes(user.id)) {
+  //   setTimeout(async () => {
+  //     console.log(`${user.id} in typing in ${channel.id}`); //TODO Для дурилки надо будет сделать ГОВНО НЕЛЬЗЯ СДЕЛАТЬ ПО НОЛРМАЛЬНОМУ
+  //     const messageSand = await client
+  //       .getChannel<TextChannel>(channel.id)
+  //       .send(`пидарас ${user.username} печатает`);
+  //   }, 5000);
+  // }
+});
+
 client.login(constants.client.token);

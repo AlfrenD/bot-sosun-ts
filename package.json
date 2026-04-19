@@ -8,7 +8,14 @@
     "build": "tsc",
     "dev": "npx nodemon --exec tsx ./src/start-bot.ts"
   },
+  "nodemonConfig": {
+    "ignore": [
+      "storage/*.json"
+    ]
+  },
   "devDependencies": {
+    "@types/jsdom": "^28.0.0",
+    "@types/node-schedule": "^2.1.8",
     "eslint": "^9.39.2",
     "prettier": "^3.7.4",
     "tsx": "^4.21.0",
@@ -18,14 +25,33 @@
   "private": true,
   "dependencies": {
     "@eslint/js": "^9.39.2",
+    "@types/d3": "^7.4.3",
+    "@types/d3-cloud": "^1.2.9",
+    "@types/dom-to-image": "^2.6.7",
     "@types/node": "^25.0.3",
+    "@types/wordcloud": "^1.2.2",
+    "@types/xmlserializer": "^0.6.6",
+    "canvas": "^3.2.1",
+    "chrono": "^1.0.5",
+    "chrono-node": "^2.9.0",
+    "convert-svg-to-png": "^0.7.1",
+    "d3": "^7.9.0",
+    "d3-cloud": "^1.2.8",
+    "d3-node": "^4.0.1",
     "discord-api-types": "^0.38.37",
     "discord.js": "^14.25.1",
     "dotenv": "^17.2.3",
+    "jsdom": "^28.1.0",
+    "node-schedule": "^2.1.1",
     "nodemon": "^3.1.11",
     "pg": "^8.16.3",
     "sequelize": "^6.37.7",
     "sequelize-typescript": "^2.1.6",
-    "ts-node": "^10.9.2"
+    "svg2img": "1.0.0-beta.2",
+    "ts-node": "^10.9.2",
+    "xmlserializer": "^0.6.1"
+  },
+  "pnpm": {
+    "neverBuildDependencies": []
   }
 }

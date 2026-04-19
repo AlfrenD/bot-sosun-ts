@@ -1,8 +1,4 @@
-import {
-  CommandInteraction,
-  MessageFlags,
-  SlashCommandBuilder,
-} from "discord.js";
+import { CommandInteraction, SlashCommandBuilder } from "discord.js";
 
 export default {
   data: new SlashCommandBuilder().setName("ping").setDescription("Ping..."),
